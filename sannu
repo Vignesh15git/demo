@@ -1,4 +1,28 @@
-haris
-vaishu
-like u so much
-my family loves me alot
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+  labels:
+    app:  myapp
+spec:
+  containers:
+  - name: nginx
+    image: 385757128340.dkr.ecr.ap-south-1.amazonaws.com/viki:latest
+    ports:
+    - containerPort: 8080
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  mynodeport
+spec:
+  selector:
+    app:  myapp
+  type:  NodePort
+  ports:
+  - name:  httpd
+    port:  80
+    targetPort:  8080
+    protocol: TCP
